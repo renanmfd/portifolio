@@ -45,6 +45,7 @@ img.icon {
   height: 32px;
   vertical-align: bottom;
   margin-right: 10px;
+  margin-bottom: -4px;
 }
 #sidebar {
   display: block;
