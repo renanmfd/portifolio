@@ -1,0 +1,140 @@
+// main: style.less
+
+#sidebar {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 150px;
+  background-color: @blue;
+  border-bottom: 1px solid @darkblue;
+  color: @ice;
+  
+  @media (min-width: @desktop) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    border-right: 1px solid @darkblue;
+    border-bottom: none;
+  }
+  
+  .container {
+    margin-left: 140px;
+    margin-right: 3%;
+    
+    @media (min-width: @desktop) {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+  }
+  
+  h1.name {
+    margin: 0;
+    padding-top: 20px;
+    font-family: @font2;
+    font-size: 32px;
+    letter-spacing: 1px;
+    color: @ice;
+    text-shadow: 2px 2px 2px rgba(0, 0, 50, 0.6);
+    
+    @media (min-width: @desktop) {
+      padding-top: 60px; 
+    }
+  }
+  
+  .title {
+    display: block;
+    margin: 15px 0 10px 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: @darkblue;
+    text-shadow: 1px 1px 2px rgba(211, 211, 252, 0.8);
+    
+    @media (min-width: @desktop) {
+      margin-bottom: 50px; 
+    }
+  }
+  
+  ul.menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    list-style-image: none;
+    text-align: left;
+    
+    li {
+      display: inline-block;
+      width: auto;
+      margin-left: 10px;
+      margin-bottom: 10px;
+      
+      &:first-child {
+        margin-left: 0;
+      }
+      
+      @media (min-width: @desktop) {
+        width: 100%;
+        margin-left: 0;
+        text-align: center;
+      }
+    }
+    
+    a {
+      display: block;
+      padding: 2px 5px;
+      color: @white;
+      text-decoration: none;
+      border: 1px solid @white;
+      transition: all 0.3s ease-in-out;
+      
+      &:hover {
+        color: @orange;
+        border-color: @orange;
+      }
+    }
+  }
+  
+  .image {
+    position: absolute;
+    bottom: -20px;
+    left: 20px;
+    border: 1px solid @darkblue;
+    
+    @media (min-width: @desktop) {
+      display: inline-block;
+      position: relative;
+      left: 0;
+    }
+    
+    img {
+      display: block;
+      margin: 0;
+      padding: 0;
+    }
+  }
+  
+  .social {
+    display: none;
+    
+    @media screen and (min-width: @mobile) {
+      display: block;
+      position: absolute;
+      top: 50px;
+      right: 20px;
+      
+      a {
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+    }
+    
+    @media (min-width: @desktop) {
+      position: relative;
+      top: 0;
+      right: 0;
+      margin-left: 120px;
+      margin-top: -70px;
+    }
+  }
+}

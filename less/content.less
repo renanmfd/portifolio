@@ -1,0 +1,170 @@
+// main: style.less
+
+#content {
+  display: block;
+  position: relative;
+  
+  @media (min-width: @desktop) {
+    margin-left: 300px; 
+  }
+  
+  .container {
+    margin-left: 3%;
+    margin-right: 3%;
+    padding: 40px 0;
+    
+    > div {
+      margin-bottom: 40px;
+    }
+  }
+}
+
+#portifolio {
+  position: relative;
+  text-align: center;
+
+  h2.section-title {
+    color: @green;
+    border-bottom: 2px solid @green;
+  }
+  
+  .portifolio-items {
+    text-align: center;
+  }
+
+  .item {
+    display: block;
+    vertical-align: top;
+    width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+    
+    @media (min-width: @tablet) {
+      display: inline-block;
+      width: 300px;
+      padding: 0 15px;
+    }
+  }
+  
+  h3 {
+    margin: 0;
+    padding: 5px;
+    background-color: @darkgreen;
+    color: @ice;
+  }
+  
+  .image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 5px 0;
+    border: 1px solid @black;
+  }
+  
+  .site {
+    border: 2px solid @darkgreen;
+    color: @darkgreen;
+    
+    span {
+      line-height: 40px;
+      font-weight: bold;
+    }
+
+    a {
+      float: right;
+      padding: 10px;
+      background-color: @darkgreen;
+      font-weight: bold;
+      color: @ice;
+      
+      &:hover {
+        color: @orange;
+      }
+    }
+  }
+  
+  .description {
+    position: relative;
+    margin: 10px 0;
+    padding: 0 20px 22px 20px;
+    border: 2px solid @darkgreen;
+    border-top: none;
+    overflow: hidden;
+    transition: height .3s ease-in-out;
+    
+    p {
+      margin: 0 0 10px 0;
+      font-family: @font2;
+      color: @coal;
+    }
+    
+    span {
+      display: block;
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      background-color: @white;
+    }
+    
+    .menos {
+      display: block;
+    }
+      
+    .mais {
+      display: none;
+    }
+    
+    &.collapsed {
+      height: 100px !important;
+      
+      .menos {
+        display: none;
+      }
+      
+      .mais {
+        display: block;
+      }
+    }
+  }
+}
+
+#skills {
+  h2.section-title {
+    color: @green;
+    border-bottom: 2px solid @green;
+  }
+}
+
+.social {
+  text-align: left;
+
+  a {
+    display: inline-block;
+    vertical-align: top;
+    padding: 6px 8px;
+    margin-right: 10px;
+    border-radius: 8px;
+    
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  
+  .facebook {
+    background-color: @facebook;
+    
+    svg * {
+      fill: @white;
+    }
+  }
+  
+  .linkedin {
+    background-color: @linkedin;
+    
+    svg * {
+      fill: @white;
+    }
+  }
+}
