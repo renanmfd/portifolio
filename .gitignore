@@ -1,0 +1,10 @@
+*.log
+node_modules
+build
+app
+*.node
+components
+coverage
+*.orig
+test/out-fixtures/*
+test/watch-*.txt

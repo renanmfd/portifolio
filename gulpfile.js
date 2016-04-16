@@ -28,7 +28,7 @@ unparam: true, indent: 4, maxlen: 80*/
     require('es6-promise').polyfill(),
 
     gulp.task('less',function(){
-        gulp.src(['src/css/**/*.less'])
+        gulp.src(['src/less/style.less'])
             .pipe(plumber({
                 handleError: function (err) {
                     console.log(err);
@@ -106,10 +106,10 @@ unparam: true, indent: 4, maxlen: 80*/
 
     gulp.task('default',function(){
         browserSync.init({
-            server: "./app"
+            server: './app'
         });
         gulp.watch('src/js/**/*.js',['js']);
-        gulp.watch('src/css/**/*.less',['less']);
+        gulp.watch('src/less/**/*.less',['less']);
         gulp.watch('src/jade/**/*.jade',['jade']);
         gulp.watch('src/img/**/*',['image']);
     });
