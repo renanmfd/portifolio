@@ -1,0 +1,23 @@
+doctype html
+html
+    head
+        block meta
+            include parts/meta.jade
+        title
+            block title 
+            | Renan Dias
+        block style
+            include parts/style.jade
+    body.layout-default
+        div#page
+            header#header
+                block header
+                    include parts/header.jade
+            main#content
+                block content
+                    include parts/content.jade
+            footer#footer
+                block footer
+                    include parts/footer.jade
+        block script
+            include parts/script.jade

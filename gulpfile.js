@@ -108,10 +108,10 @@ unparam: true, indent: 4, maxlen: 80*/
         browserSync.init({
             server: './app'
         });
-        gulp.watch('src/js/**/*.js',['js']);
-        gulp.watch('src/less/**/*.less',['less']);
-        gulp.watch('src/jade/**/*.jade',['jade']);
-        gulp.watch('src/img/**/*',['image']);
+        gulp.watch('./src/js/**/*.js',['js']);
+        gulp.watch('./src/less/**/*.less',['less']);
+        gulp.watch('./src/jade/**/*.jade',['jade']);
+        gulp.watch('./src/img/**/*',['image']);
     });
 
 }());
