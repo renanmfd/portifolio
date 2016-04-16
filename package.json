@@ -1,0 +1,49 @@
+{
+  "name": "portifolio",
+  "version": "1.0.0",
+  "description": "My portifolio",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/renanmfd/portifolio.git"
+  },
+  "keywords": [
+    "portifolio",
+    "web",
+    "design",
+    "renanmfd",
+    "site"
+  ],
+  "author": "Renan Dias",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/renanmfd/portifolio/issues"
+  },
+  "homepage": "https://github.com/renanmfd/portifolio#readme",
+  "devDependencies": {
+    "browser-sync": "*",
+    "es6-promise": "*",
+    "gulp": "*",
+    "gulp-autoprefixer": "*",
+    "gulp-browserify": "*",
+    "gulp-cache": "*",
+    "gulp-clean-css": "*",
+    "gulp-concat": "*",
+    "gulp-csscomb": "*",
+    "gulp-frontnote": "*",
+    "gulp-imagemin": "*",
+    "gulp-jade": "*",
+    "gulp-jshint": "*",
+    "gulp-less": "*",
+    "gulp-minify-html": "*",
+    "gulp-notify": "*",
+    "gulp-plumber": "*",
+    "gulp-rename": "*",
+    "gulp-sourcemaps": "*",
+    "gulp-uglify": "*",
+    "jshint": "^2.9.1"
+  }
+}
