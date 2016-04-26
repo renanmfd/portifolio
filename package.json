@@ -33,17 +33,20 @@
     "gulp-clean-css": "*",
     "gulp-concat": "*",
     "gulp-csscomb": "*",
+    "gulp-data": "^1.2.1",
+    "gulp-debug": "^2.1.2",
     "gulp-frontnote": "*",
     "gulp-imagemin": "*",
-    "gulp-jade": "*",
+    "gulp-jade": "^1.1.0",
     "gulp-jshint": "*",
-    "gulp-less": "*",
+    "gulp-less": "^3.0.5",
     "gulp-minify-html": "*",
     "gulp-notify": "*",
     "gulp-plumber": "*",
     "gulp-rename": "*",
     "gulp-sourcemaps": "*",
     "gulp-uglify": "*",
-    "jshint": "^2.9.1"
+    "jshint": "^2.9.1",
+    "path": "^0.12.7"
   }
 }
