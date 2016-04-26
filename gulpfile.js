@@ -51,9 +51,11 @@ if (!String.prototype.startsWith) {
         gutil = require('gulp-util'),
         data = require('gulp-data'),
         path = require('path'),
+        assign = require('object-assign'),
 
         // HTML tools.
         jade = require('gulp-jade'),
+        marked = require('marked'),
         jadelint = require('gulp-jadelint'),
 
         // CSS tools.
@@ -103,14 +105,21 @@ if (!String.prototype.startsWith) {
         ])
             .pipe(plumber(plumberOpt))
             .pipe(data(function (file) {
-                var filename = path.basename(file.path);
+                var filename = path.basename(file.path),
+                    baseData,
+                    fileData;
+                console.log('---> filename', filename);
                 if (filename.startsWith('_')) {
                     return {};
                 }
-                return require(config.source + '/jade/data/' +
+                baseData = require(config.source + '/jade/data/general.json');
+                fileData = require(config.source + '/jade/data/' +
                     filename + '.json');
+                return assign({}, baseData, fileData);
             }))
-            .pipe(jade())
+            .pipe(jade({
+                pretty: true
+            }))
             .pipe(gulp.dest(config.build + '/'))
             .pipe(reload({stream: true}));
     });

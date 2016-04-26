@@ -1,0 +1,33 @@
+{
+  "name": "portifolio",
+  "description": "Developer Renan Dias portifólio",
+  "main": "dist/index.html",
+  "authors": [
+    "renanmfd"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "nodejs",
+    "npm",
+    "gulp",
+    "html",
+    "css",
+    "js",
+    "portifolio",
+    "renanmfd",
+    "Renan",
+    "Dias"
+  ],
+  "homepage": "https://github.com/renanmfd/portifolio",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "skeleton": "skeleton-css#^2.0.4",
+    "jquery": "^2.2.3"
+  }
+}
