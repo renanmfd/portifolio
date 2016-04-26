@@ -1,13 +1,10 @@
-@import 'vendor/normalize.less';
-@import 'components/variables.less';
-@import 'components/container.less';
-@import 'components/ui.less';
+@import 'base/normalize';
+@import 'base/variables';
+@import 'base/mixing';
+@import 'base/base';
 
-* {
-    box-sizing: border-box;
-}
+@import 'components/header';
+@import 'components/menu';
+@import 'components/footer';
 
-body {
-    color: #2c2725;
-}
-
+@import 'pages/about';

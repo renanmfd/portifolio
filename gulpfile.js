@@ -1,132 +1,218 @@
-/*jslint browser: true, devel: true, node: true, nomen: true, regexp: true, 
-unparam: true, indent: 4, maxlen: 80*/
+/*jslint browser: true, devel: true, node: true, rhino: false, nomen: true,
+         regexp: true, unparam: true, indent: 4, maxlen: 80*/
 
-(function () {
-    
+// Polyfill
+if (!String.prototype.startsWith) {
+    String.prototype.startsWith = function (searchString, position) {
+        'use strict';
+        position = position || 0;
+        return this.indexOf(searchString, position) === position;
+    };
+}
+
+/**
+ * @author Tursites / Renan
+ *
+ * GULP
+ * -- HTML
+ *    > Jade
+ *    > Jade lint
+ * -- CSS
+ *    > CSSLint (https://github.com/lazd/gulp-csslint)
+ *    > Sourcemaps (https://github.com/floridoo/gulp-sourcemaps)
+ *    > PostCSS (https://github.com/postcss/postcss)
+ *    > Autoprefixer (https://github.com/postcss/autoprefixer)
+ *    > PXtoREM (https://github.com/cuth/postcss-pxtorem)
+ *    > CSSComb (https://github.com/koistya/gulp-csscomb)
+ *    > CleanCSS (https://github.com/scniro/gulp-clean-css)
+ * -- Javascript
+ *    > ESLint (https://github.com/karimsa/gulp-jslint)
+ *    > Complexity (https://github.com/alexeyraspopov/gulp-complexity)
+ *    > Uglify (https://github.com/terinjokes/gulp-uglify)
+ * -- Images
+ *    > ImageMin
+ * -- Favicons
+ *    > Favicons
+ */
+(function gulpClosure() {
+    'use strict';
+
+    // Gulp core.
     var gulp = require('gulp'),
-        
+
+        // Browser sync.
         browserSync = require('browser-sync').create(),
         reload = browserSync.reload,
-        
+
+        // Utils.
         plumber = require('gulp-plumber'),
         rename = require('gulp-rename'),
-        
-        less = require('gulp-less'),
-        sourcemaps = require('gulp-sourcemaps'),
-        autoPrefixer = require('gulp-autoprefixer'),
-        cssComb = require('gulp-csscomb'),
-        frontnote = require('gulp-frontnote'),
-        cleanCss = require('gulp-clean-css'),
-        
-        jshint = require('gulp-jshint'),
-        browserify = require('gulp-browserify'),
-        uglify = require('gulp-uglify'),
-        concat = require('gulp-concat'),
-        jade = require('gulp-jade'),
-        minifyHtml = require('gulp-minify-html'),
-        imageMin = require('gulp-imagemin'),
-        cache = require('gulp-cache'),
+        cache = require('gulp-cached'),
+        gutil = require('gulp-util'),
         data = require('gulp-data'),
         path = require('path'),
-        debug = require('gulp-debug'),
-        notify = require('gulp-notify');
 
-    //if node version is lower than v.0.1.2
-    require('es6-promise').polyfill(),
+        // HTML tools.
+        jade = require('gulp-jade'),
+        jadelint = require('gulp-jadelint'),
 
-    gulp.task('less', function () {
-        gulp.src(['./src/less/style.less'])
-            .pipe(plumber({
-                handleError: function (err) {
-                    console.log(err);
-                    this.emit('end');
+        // CSS tools.
+        lesshint = require('gulp-lesshint'),
+        sourcemaps = require('gulp-sourcemaps'),
+        less = require('gulp-less'),
+        LessPluginCleanCSS = require('less-plugin-clean-css'),
+        LessPluginAutoPrefix = require('less-plugin-autoprefix'),
+        LessPluginCSScomb = require('less-plugin-csscomb'),
+        cleancss = new LessPluginCleanCSS({advanced: true}),
+        autoprefix = new LessPluginAutoPrefix({browsers: ["last 2 versions"]}),
+        csscomb = new LessPluginCSScomb("zen"),
+
+        // Javascript tools.
+        eslint = require('gulp-eslint'),
+        complexity = require('gulp-complexity'),
+        uglify = require('gulp-uglify'),
+
+        // Imaging tools.
+        imageMin = require('gulp-imagemin'),
+        favicons = require("gulp-favicons"),
+
+        // Configuration.
+        config = {
+            source: './src',
+            build: './dist'
+        },
+        plumberOpt = {
+            handleError: function (err) {
+                console.log('Plumber ->', err);
+                this.emit('end');
+            }
+        };
+
+    /**
+     * HTML build.
+     */
+    gulp.task('jade-lint', function () {
+        return gulp.src(config.source + '/jade/**/*.jade')
+            .pipe(plumber())
+            .pipe(jadelint());
+    });
+    gulp.task('jade', ['jade-lint'], function htmlTask() {
+        return gulp.src([
+            config.source + '/jade/**/*.jade',
+            '!' + config.source + '/jade/layouts/**/*.jade'
+        ])
+            .pipe(plumber(plumberOpt))
+            .pipe(data(function (file) {
+                var filename = path.basename(file.path);
+                if (filename.startsWith('_')) {
+                    return {};
                 }
+                return require(config.source + '/jade/data/' +
+                    filename + '.json');
             }))
-            .pipe(debug({title: 'less:'}))
-            .pipe(frontnote({
-                out: './docs/css'
+            .pipe(jade())
+            .pipe(gulp.dest(config.build + '/'))
+            .pipe(reload({stream: true}));
+    });
+
+    /**
+     * CSS build.
+     */
+    gulp.task('less-lint', function cssTask() {
+        return gulp.src(config.source + '/less/**/*.less')
+            .pipe(plumber())
+            .pipe(lesshint({
+                // Options
             }))
+            .pipe(lesshint.reporter())
+            .on('error', function () {
+                gutil.log('Less lint error');
+            });
+    });
+    gulp.task('less', ['less-lint'], function cssTask() {
+        return gulp.src(config.source + '/less/style.less')
+            .pipe(plumber(plumberOpt))
             .pipe(sourcemaps.init())
-            .pipe(less())
-            .pipe(autoPrefixer())
-            .pipe(cssComb())
-            .pipe(gulp.dest('./app/css'))
-            .pipe(rename({
-                suffix: '.min'
+            .pipe(less({
+                plugins: [autoprefix, csscomb, cleancss]
             }))
-            .pipe(cleanCss())
+            .pipe(rename({suffix: '.min'}))
             .pipe(sourcemaps.write())
-            .pipe(gulp.dest('./app/css'))
-            .pipe(reload({stream: true}))
-            .pipe(notify('css task finished'))
+            .pipe(gulp.dest(config.build + '/css/'))
+            .pipe(reload({stream: true}));
     });
 
-    gulp.task('js',function () {
-        gulp.src(['./src/js/**/*.js'])
-            .pipe(plumber({
-                handleError: function (err) {
-                    console.log(err);
-                    this.emit('end');
-                }
-            }))
-            .pipe(debug({title: 'js:'}))
-            .pipe(concat('app.js'))
-            .pipe(jshint())
-            .pipe(jshint.reporter('default'))
-            .pipe(gulp.dest('./app/js'))
-            .pipe(rename({
-                suffix: '.min'
-            }))
+    /**
+     * Javascript build.
+     */
+    gulp.task('js-lint', function () {
+        return gulp.src([config.source + '/js/**/*.js'])
+            .pipe(plumber())
+            .pipe(eslint('.eslintrc'))
+            .pipe(eslint.format())
+            .pipe(eslint.failAfterError());
+    });
+    gulp.task('js', ['js-lint'], function jsTask() {
+        return gulp.src([config.source + '/js/**/*.js'])
+            .pipe(cache('js'))
+            .pipe(plumber(plumberOpt))
+            .pipe(complexity())
+            .pipe(gulp.dest(config.build + '/js/'))
+            .pipe(rename({suffix: '.min'}))
             .pipe(uglify())
-            .pipe(gulp.dest('./app/js'))
-            .pipe(reload())
-            .pipe(notify('js task finished'))
+            .pipe(gulp.dest(config.build + '/js/'))
+            .pipe(reload({stream: true}));
     });
 
-    gulp.task('jade', function () {
-        gulp.src(['src/jade/*.jade'])
-            .pipe(plumber({
-                handleError: function (err) {
-                    console.log(err);
-                    this.emit('end');
-                }
-            }))
-            .pipe(debug({title: 'jade:'}))
-            .pipe(data(function(file) {
-                return require('./src/jade/data/' + path.basename(file.path) + '.json');
-            }))
-            .pipe(jade({
-                pretty: true
-            }))
-            .pipe(minifyHtml())
-            .pipe(gulp.dest('./app'))
-            .pipe(reload())
-            .pipe(notify('html task finished'))
-    });
-
-    gulp.task('image', function () {
-        gulp.src(['src/img/**/*'])
-            .pipe(plumber({
-                handleError: function (err) {
-                    console.log(err);
-                    this.emit('end');
-                }
-            }))
-            .pipe(debug({title: 'image:'}))
+    /**
+     * Image build.
+     */
+    gulp.task('img', function () {
+        gulp.src([config.source + '/img/*'])
+            .pipe(plumber(plumberOpt))
             .pipe(cache(imageMin()))
-            .pipe(gulp.dest('./app/img'))
-            .pipe(reload())
-            .pipe(notify('image task finished'))
+            .pipe(gulp.dest(config.build + '/img/'));
     });
 
-    gulp.task('default', function () {
+    /**
+     * Favicon build.
+     * Not automatic run.
+     * To use, type "gulp favicon" on the command line.
+     */
+    gulp.task('favicon', function () {
+        return gulp.src(config.source + '/img/logo.*').pipe(favicons({
+            appName: 'Portifolio',
+            appDescription: 'Renan Dias Portifolio',
+            developerName: 'Renan Dias',
+            developerURL: 'http://renandias.io/',
+            background: '#1c2e72',
+            path: 'favicons/',
+            url: 'http://renandias.io/',
+            display: 'standalone',
+            orientation: 'portrait',
+            version: 1.0,
+            logging: false,
+            online: false,
+            html: 'index.html',
+            pipeHTML: true,
+            replace: true
+        }))
+            .on('error', gutil.log)
+            .pipe(gulp.dest(config.build + '/favicon/'));
+    });
+
+    /**
+     * Browser sync watch.
+     */
+    gulp.task('watch', function watchTask() {
         browserSync.init({
-            server: './app'
+            server: config.build
         });
-        gulp.watch('./src/js/**/*.js', ['js']);
-        gulp.watch('./src/less/**/*.less', ['less']);
-        gulp.watch('./src/jade/**/*.jade', ['jade']);
-        gulp.watch('./src/img/**/*', ['image']);
+
+        gulp.watch(config.source + '/jade/**/*.jade', ['jade']);
+        gulp.watch(config.source + '/less/**/*.less', ['less']);
+        gulp.watch(config.source + '/js/**/*.js', ['js']);
     });
 
+    gulp.task('default', ['jade', 'less', 'js', 'img', 'watch']);
 }());
