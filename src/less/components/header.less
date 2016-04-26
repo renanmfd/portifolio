@@ -1,0 +1,46 @@
+@headerTriangleCl: #FFFFFF;
+@headerTriangle: 300px;
+@headerSwicher: 100px;
+@headerMenuCl: #FFFFFF;
+@headerMenuBCl: #179830;
+@headerMenuFs: 24px;
+
+#header {
+    position: relative;
+}
+
+#titleTriangle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: @headerTriangle;
+    background-color: @headerTriangleCl;
+}
+
+#mainMenu {
+    margin-left: @headerTriangle;
+    margin-right: @headerSwicher;
+
+    .menu-item {
+
+        a {
+            padding: 10px 0;
+            font-size: @headerMenuFs;
+            color: @headerMenuCl;
+            border: 2px solid transparent;
+            opacity: 0.7;
+
+            &:hover {
+                border-color: @headerMenuBCl;
+                opacity: 1;
+            }
+        }
+    }
+}
+
+#langSwicher {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: @headerSwicher;
+}

@@ -1,7 +1,7 @@
 - var lang = 'pt'
 
-nav
+nav#mainMenu
     ul.menu
         each menu in menus
-            li.menu-item.i
-                a(href="#{menu['link']}") #{menu['name'][lang]}
+            li.menu-item
+                a(href="#{menu.link}") #{menu.name.lang}
