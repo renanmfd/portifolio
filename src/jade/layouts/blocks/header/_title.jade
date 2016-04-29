@@ -1,9 +1,9 @@
-div#titleTriangle
-    h1.dev-name Renan Dias
-    h2.dev-title Web developer
-    div.ui-triangle.medium
+div#developerInfo.triangle
+    h1.dev-name Teste Test
+    h2.dev-title Tes Testetest
+    div.dev-links
         each network in socialNetworks
-            div.ui-triangle.small(style="background:#{network.color}")
+            div.link(style="background:#{network.color}").triangle
                 a(href="#{network.link}", title="#{network.name}")
                     span.hidden #{network.name}
                     img(src="./img/social/#{network.logo}", alt="#{network.name}")
