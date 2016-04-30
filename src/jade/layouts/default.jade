@@ -17,6 +17,9 @@ html(lang="pt-br")
         | <![endif]-->
 
     body.layout-default
+        div#paths(style="height:0;")
+            block paths
+                include blocks/_svg.jade
         div#page
             header#header
                 block header

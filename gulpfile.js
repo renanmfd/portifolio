@@ -108,7 +108,6 @@ if (!String.prototype.startsWith) {
                 var filename = path.basename(file.path),
                     baseData,
                     fileData;
-                console.log('---> filename', filename);
                 if (filename.startsWith('_')) {
                     return {};
                 }

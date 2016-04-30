@@ -1,5 +1,6 @@
 @fontNormal: 16px;
 @siteBg: #171313;
+@siteCl: #EDFDFD;
 
 * {
     box-sizing: border-box;
@@ -8,6 +9,28 @@
 body {
     font-family: sans-serif, monospace, serif;
     font-size: @fontNormal;
-    line-height: 20px;
+    line-height: 22px;
     background-color: @siteBg;
+    color: @siteCl;
+}
+
+.triangle {
+    -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
+    -webkit-clip-path: url('#triangle-clip');
+    clip-path: url('#triangle-clip');
+}
+
+.triangle-reverse {
+    -webkit-clip-path: polygon(0% 0%, 100% 100%, 100% 0%);
+    clip-path: polygon(0% 0%, 100% 100%, 100% 0%);
+    -webkit-clip-path: url('#triangle-reverse-clip');
+    clip-path: url('#triangle-reverse-clip');
+}
+
+.hexagon {
+    -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    -webkit-clip-path: url('#hexagon-clip');
+    clip-path: url('#hexagon-clip');
 }

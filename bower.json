@@ -28,6 +28,7 @@
   ],
   "dependencies": {
     "skeleton": "skeleton-css#^2.0.4",
-    "jquery": "^2.2.3"
+    "jquery": "^2.2.3",
+    "normalize-css": "normalize.css#^4.1.1"
   }
 }
