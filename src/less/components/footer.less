@@ -1,0 +1,66 @@
+#footer {
+    position: relative;
+    padding: 40px 0;
+    margin-top: 40px;
+    background-color: #393939;
+    overflow: hidden;
+    
+    .container {position: initial;}
+    
+    .footer-menus {
+        max-width: 300px;
+        
+        h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            border-bottom: 1px solid @headerDevTitleCl;
+            font-size: 20px;
+            text-transform: uppercase;
+            color: @headerDevTitleCl;
+        }
+        a {
+            text-decoration: none;
+            color: #FFFFFF;
+            opacity: 0.8;
+            transition: all ease-in-out 0.3s;
+            
+            &:hover {
+                opacity: 1;
+                text-shadow: 0 0 10px #FFFFFF;
+            }
+        }
+    }
+    
+    .decoration {
+        .dec-item {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-color: @siteBg;
+        }
+        .dec-top {
+            top: -12px;
+            left: 50%;
+            transform: rotate(45deg) translateX(-50%);
+        }
+        .dec-bottom-left {
+            bottom: -70px;
+            left: 25%;
+            transform: rotate(45deg) translateX(-50%);
+        }
+        .dec-bottom-right {
+            bottom: -70px;
+            right: 25%;
+            transform: rotate(45deg) translateY(-50%);
+        }
+    }
+}
+
+#page-bottom {
+    padding: 15px 0;
+    opacity: 0.9;
+
+    p {
+        text-align: right;
+    }
+}
