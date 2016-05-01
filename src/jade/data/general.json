@@ -29,31 +29,5 @@
             },
             "link": "./contact.html"
         }
-    ],
-    "socialNetworks": [
-        {
-            "name": "Gmail",
-            "logo": "gmail.png",
-            "link": "mailto:renanmfd@gmail.com",
-            "color": "#DD4B39"
-        },
-        {
-            "name": "Github",
-            "logo": "github.png",
-            "link": "https://github.com/renanmfd",
-            "color": "#000000"
-        },
-        {
-            "name": "Facebook",
-            "logo": "facebook.png",
-            "link": "https://facebook.com/renanmfd",
-            "color": "#3B5998"
-        },
-        {
-            "name": "Linkedin",
-            "logo": "linkedin.png",
-            "link": "https://linkedin.com/renanmfd",
-            "color": "#0077B5"
-        }
     ]
 }

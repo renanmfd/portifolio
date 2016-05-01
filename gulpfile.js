@@ -176,7 +176,7 @@ if (!String.prototype.startsWith) {
      * Image build.
      */
     gulp.task('img', function () {
-        gulp.src([config.source + '/img/*'])
+        gulp.src([config.source + '/img/**/*'])
             .pipe(plumber(plumberOpt))
             .pipe(cache(imageMin()))
             .pipe(gulp.dest(config.build + '/img/'));

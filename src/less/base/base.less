@@ -1,5 +1,7 @@
 @fontNormal: 16px;
-@siteBg: #171313;
+@openSans: 'Open Sans', sans-serif;
+@robotoSlab: 'Roboto Slab', serif;
+@siteBg: #181313;
 @siteCl: #EDFDFD;
 
 * {
@@ -7,7 +9,7 @@
 }
 
 body {
-    font-family: sans-serif, monospace, serif;
+    font-family: @openSans;
     font-size: @fontNormal;
     line-height: 22px;
     background-color: @siteBg;
@@ -15,15 +17,15 @@ body {
 }
 
 .triangle {
-    -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
+    -webkit-clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+    clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
     -webkit-clip-path: url('#triangle-clip');
     clip-path: url('#triangle-clip');
 }
 
 .triangle-reverse {
-    -webkit-clip-path: polygon(0% 0%, 100% 100%, 100% 0%);
-    clip-path: polygon(0% 0%, 100% 100%, 100% 0%);
+    -webkit-clip-path: polygon(100% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(100% 0%, 100% 100%, 0% 100%);
     -webkit-clip-path: url('#triangle-reverse-clip');
     clip-path: url('#triangle-reverse-clip');
 }
@@ -34,3 +36,26 @@ body {
     -webkit-clip-path: url('#hexagon-clip');
     clip-path: url('#hexagon-clip');
 }
+
+.clearfix() {
+    &:before,
+    &:after {
+    content: ' ';
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+.hidden {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+.visible {
+    display: block !important;
+    visibility: visible !important;
+}
+
+

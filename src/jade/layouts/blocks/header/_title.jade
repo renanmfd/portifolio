@@ -1,9 +1,56 @@
 div#developerInfo.triangle
-    h1.dev-name Teste Test
-    h2.dev-title Tes Testetest
-    div.dev-links
-        each network in socialNetworks
-            div.link(style="background:#{network.color}").triangle
-                a(href="#{network.link}", title="#{network.name}")
-                    span.hidden #{network.name}
-                    img(src="./img/social/#{network.logo}", alt="#{network.name}")
+    h1.dev-name Renan Dias
+    h2.dev-title Web developer
+    div.dev-links.clearfix
+        div.link.triangle.gmail
+            a(href="mailto:renanmfd@gmail.com", title="Gmail")
+                span.hidden Gmail
+                div.link-content.front
+                    div.link-img.triangle
+                        img.hidden(src="./img/social/gmail.png", alt="Gmail")
+                        div.svg-wrapper
+                            include social/gmail.svg
+                div.link-content.back
+                    div.link-img.triangle
+                        img.hidden(src="./img/social/gmail.png", alt="Gmail")
+                        div.svg-wrapper
+                            include social/gmail.svg
+        div.link.triangle-reverse.github
+            a(href="https://github.com/renanmfd", title="Github", target="_blank")
+                span.hidden Github
+                div.link-content.front
+                    div.link-img.triangle-reverse
+                        img.hidden(src="./img/social/github.png", alt="Github")
+                        div.svg-wrapper
+                            include social/github.svg
+                div.link-content.back
+                    div.link-img.triangle-reverse
+                        img.hidden(src="./img/social/github.png", alt="Github")
+                        div.svg-wrapper
+                            include social/github.svg
+        div.link.triangle.facebook
+            a(href="https://facebook.com/renanmfd", title="Facebook", target="_blank")
+                span.hidden Facebook
+                div.link-content.front
+                    div.link-img.triangle
+                        img.hidden(src="./img/social/facebook.png", alt="Facebook")
+                        div.svg-wrapper
+                            include social/facebook.svg
+                div.link-content.back
+                    div.link-img.triangle
+                        img.hidden(src="./img/social/facebook.png", alt="Facebook")
+                        div.svg-wrapper
+                            include social/facebook.svg
+        div.link.triangle.linkedin
+            a(href="https://linkedin.com/renanmfd", title="Linkedin", target="_blank")
+                span.hidden Linkedin
+                div.link-content.front
+                    div.link-img.triangle
+                        img.hidden(src="./img/social/linkedin.png", alt="Linkedin")
+                        div.svg-wrapper
+                            include social/linkedin.svg
+                div.link-content.back
+                    div.link-img.triangle
+                        img.hidden(src="./img/social/linkedin.png", alt="Linkedin")
+                        div.svg-wrapper
+                            include social/linkedin.svg
