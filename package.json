@@ -4,7 +4,7 @@
   "description": "Developer Renan Dias portifólio",
   "main": "app/index.html",
   "scripts": {
-    "test": "gulṕ test"
+    "test": "npm i -g gulp && gulp test"
   },
   "repository": {
     "type": "git",
