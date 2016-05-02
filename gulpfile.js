@@ -223,6 +223,6 @@ if (!String.prototype.startsWith) {
     });
 
     gulp.task('default', ['jade', 'less', 'js', 'img', 'watch']);
-    
+
     gulp.task('test', ['jade-lint', 'less-lint', 'js-lint']);
 }());
